@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:p="http://primefaces.org/ui" 
+xmlns:b="http://bootsfaces.net/ui" 
+template="/template/loginTemplate.xhtml">
+
+	<ui:define name="body">
+		<b:container>
+			<b:jumbotron>
+				<h:form id="login" role="form" class="form-horizontal" prependId="false">
+					<ui:fragment rendered="${!empty param['error']}">
+						<div class="alert alert-danger" role="alert">#{msg.authenticationFailed}</div>
+					</ui:fragment>
+
+					<b:messages id="messaggio" />
+
+					<div class="form-group has-feedback has-feedback-left">
+						<label class=" col-sm-2 control-label">#{msg.username}:</label>
+						<div class="left-inner-addon col-sm-4">
+							<i class="icon-user glyphicon glyphicon-user"></i>
+							<p:inputText id="username" class="form-control" placeholder="#{msg.username}" value="#{login.username}">
+							</p:inputText>
+						</div>
+						<div class="col-sm-4">
+							<p:message id="usernameMsg" for="username" />
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<label class=" col-sm-2 control-label">#{msg.password}:</label>
+						<div class="left-inner-addon col-sm-4">
+							<i class="icon-key glyphicon glyphicon-lock"></i>
+							<p:password id="password" class="form-control" placeholder="#{msg.password}" value="#{login.password}"/>
+						</div>
+						<div class="col-sm-4">
+							<p:message for="password" />
+						</div>
+					</div>
+
+					<div class="form-group has-feedback has-feedback-left">
+						<label class=" col-sm-2 control-label">#{msg.company}:</label>
+						<div class="left-inner-addon col-sm-4">
+							<b:selectOneMenu id="company" value="#{login.selectedCompanyId}" style="margin-left: 15px; width:92%; padding-left:15px;">
+								<f:selectItems value="#{login.companyList}" />
+							</b:selectOneMenu>
+						</div>
+						<div class="col-sm-4">
+							<p:message for="password" />
+						</div>
+					</div>
+
+
+					<br />
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-xs-10">
+							<button type="submit" class="btn btn-primary btn-lg">#{msg.login}</button>
+						</div>
+					</div>
+
+				</h:form>
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+</ui:composition>

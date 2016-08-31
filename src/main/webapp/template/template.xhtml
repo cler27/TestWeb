@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<link rel="icon" type="image/x-icon" href="#{homeController.contextPath}/resources/images/favicon.ico" />
+	<title>#{msg.application_title}</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+	<b:navBar brand="#{msg.application_title}" brandHref="#{homeController.contextPath}/auth/home.xhtml" inverse="true" fixed="top">
+		<b:navbarLinks>
+			<b:navLink value="#{msg.home_title}" href="#{homeController.contextPath}/auth/home.xhtml" />
+			<b:dropMenu value="Menu">
+				<b:navLink value="#{msg.worker_title}" href="#{homeController.contextPath}/auth/worker/workerDetail.xhtml" />
+			</b:dropMenu>
+		</b:navbarLinks>
+
+		<h:panelGroup rendered="#{login.loggedIn}">
+			<h:form styleClass="navbar-form navbar-right">
+				<div class="form-group">
+					<h:outputText fieldSize="sm" />
+				</div>
+
+				<b:commandButton ajax="false" action="#{login.logoutPage}" value="#{msg.logout}" look="success" icon="chevron-right" iconAlign="right" />
+			</h:form>
+			<b:navbarLinks pull="right">
+				<b:navLink value="#{login.loggedWorker}" iconAwesome="fa-user" href="#"/>
+				<b:navLink value="#{login.loggedCompany}" iconAwesome="fa-industry" href="#"/>
+			</b:navbarLinks>
+		</h:panelGroup>
+
+	</b:navBar>
+	<h:form id="formGenerale">
+		<b:growl id="growlMessage" placementFrom="top" placement-align="right" show-detail="true" global-only="true" show-summary="true" allow-dismiss="true" animation-enter="animated bounceInDown" animation-exit="animated flipOutX" escape="true" />
+		<ui:insert name="body" />
+	</h:form>
+
+	<ui:insert name="footer">
+		<b:container>
+			<hr />
+			<footer>
+				<p>#{msg.application_footer}</p>
+			</footer>
+		</b:container>
+	</ui:insert>
+
+</h:body>
+</html>

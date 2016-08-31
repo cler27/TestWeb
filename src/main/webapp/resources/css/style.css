@@ -1,0 +1,44 @@
+.pageTitle {
+	font-family: "Lucida Bright";
+	font-size: 28px !important;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: bold;
+	line-height: 48px;
+	color: #395c82;
+}
+
+.left-inner-addon {
+	position: relative;
+}
+
+.left-inner-addon input {
+	padding-left: 30px;
+}
+
+.left-inner-addon i {
+	position: absolute;
+	padding: 10px 12px;
+	pointer-events: none;
+}
+
+.right-inner-addon {
+	position: relative;
+}
+
+.right-inner-addon input {
+	padding-right: 30px;
+}
+
+.right-inner-addon i {
+	position: absolute;
+	right: 0px;
+	padding: 10px 12px;
+	pointer-events: none;
+}
+
+.alert {
+	border-radius: 15px !important;
+	padding: 10px !important;
+	top: 130px !important;
+}

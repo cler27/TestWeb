@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui" xmlns:sec="http://www.springframework.org/security/tags" template="/template/template.xhtml">
+
+	<ui:define name="body">
+		<h:form id="workerListForm">
+			<br />
+			<b:container>
+				<b:row>
+					<b:column span="10" col-xs="7">
+						<p:outputLabel value="#{msg.worker_title}" styleClass="pageTitle" />
+					</b:column>
+					<b:column span="2" col-xs="5">
+						<div>
+							<b:buttonGroup>
+								<b:commandButton value="#{msg.btnEdit}" icon="glyphicon glyphicon-pencil" iconAlign="left" action="#{workerList.editAction}" />
+								<b:commandButton value="#{msg.btnBack}" icon="glyphicon glyphicon-chevron-left" iconAlign="left" action="#{workerList.backAction}" />
+							</b:buttonGroup>
+						</div>
+					</b:column>
+				</b:row>
+			</b:container>
+			<b:container>
+				<b:jumbotron>
+					<p:dataTable value="#{workerList.entities}" var="entity" selectionMode="single" rowKey="#{entity.id}">
+						<p:ajax event="rowSelect" listener="#{workerList.rowSelect}" global="false" />
+						<p:ajax event="rowDblselect" listener="#{workerList.dblClickSelect}" global="false" />
+						<p:column headerText="#{msg.username}" sortBy="#{entity.username}">
+							<h:outputText value="#{entity.username}" />
+						</p:column>
+						<p:column headerText="#{msg.workgroup}" sortBy="#{entity.workgroup.description}">
+							<h:outputText value="#{entity.workgroup.description}" />
+						</p:column>
+						<p:column headerText="#{msg.scancode}" sortBy="#{entity.scancode}">
+							<h:outputText value="#{entity.scancode}" />
+						</p:column>
+					</p:dataTable>
+				</b:jumbotron>
+			</b:container>
+		</h:form>
+	</ui:define>
+</ui:composition>

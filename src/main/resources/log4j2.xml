@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+	<Properties>
+		<Property name="log-path">C:\TestWeb\logs</Property>
+	</Properties>
+
+	<Appenders>
+
+		<!-- CONSOLE -->
+		<Console name="console_appender" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%d][%p] %m\r\n" />
+		</Console>
+
+		<!-- APPLICATION -->
+		<RollingFile name="application_appender" fileName="${log-path}/application.log" filePattern="${log-path}/application-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%d][%p] %m\r\n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+		<Root level="info" additivity="false">
+			<AppenderRef ref="console_appender" />
+		</Root>
+		<Logger name="application" level="debug" additivity="false">
+			<appender-ref ref="application_appender" level="debug" />
+		</Logger>
+	</Loggers>
+
+</Configuration>

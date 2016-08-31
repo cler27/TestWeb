@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui" xmlns:sec="http://www.springframework.org/security/tags" template="/template/template.xhtml">
+
+	<ui:define name="body">
+		<br />
+		<b:container>
+			<b:row>
+				<b:column span="9" col-xs="7">
+					<p:outputLabel value="#{msg.worker_title}" styleClass="pageTitle" />
+				</b:column>
+				<b:column span="3" col-xs="5">
+					<div>
+						<b:buttonGroup>
+							<b:commandButton value="#{msg.btnClear}" icon="glyphicon glyphicon-erase" iconAlign="right" action="#{workerDetail.clearAction}" rendered="#{workerDetail.buttons.btnClearEnabled}" immediate="true" />
+							<b:commandButton value="#{msg.btnSearch}" icon="glyphicon glyphicon-search" iconAlign="right" action="#{workerDetail.searchAction}" rendered="#{workerDetail.buttons.btnSearchEnabled}" />
+							<b:commandButton value="#{msg.btnNew}" icon="glyphicon glyphicon-asterisk" iconAlign="right" action="#{workerDetail.newAction}" rendered="#{workerDetail.buttons.btnNewEnabled}" immediate="true" />
+							<b:commandButton value="#{msg.btnDelete}" icon="glyphicon glyphicon-remove" iconAlign="right" action="#{workerDetail.deleteAction}" rendered="#{workerDetail.buttons.btnDeleteEnabled}" immediate="true" />
+							<b:commandButton value="#{msg.btnSave}" icon="glyphicon glyphicon-ok" iconAlign="right" action="#{workerDetail.saveAction}" rendered="#{workerDetail.buttons.btnSaveEnabled}" />
+						</b:buttonGroup>
+					</div>
+				</b:column>
+			</b:row>
+		</b:container>
+		<b:container>
+			<b:jumbotron>
+				<b:row>
+					<b:column span="3">
+						<b:inputText value="#{workerDetail.entity.username}" readonly="#{workerDetail.entity.id > 0}" required="#{workerDetail.buttons.isEditing}" label="#{msg.username}" />
+					</b:column>
+					<b:column span="3">
+						<b:inputSecret value="#{workerDetail.entity.password}" required="#{workerDetail.buttons.isEditing}" label="#{msg.password}" />
+					</b:column>
+					<b:column span="3">
+						<b:inputSecret value="#{workerDetail.confirmPassword}" required="#{workerDetail.buttons.isEditing}" label="#{msg.confirmPassword}" onblur="ajax:workerDetail.checkPassword()"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="6">
+						<b:selectOneMenu value="#{workerDetail.selectedWorkgroupId}" required="#{workerDetail.buttons.isEditing}" label="#{msg.workgroup}">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems value="#{workerDetail.workgroupList}" />
+						</b:selectOneMenu>
+					</b:column>
+					<b:column span="3">
+						<b:inputText value="#{workerDetail.entity.scancode}" style="text-align: right;" label="#{msg.scancode}" />
+					</b:column>
+				</b:row>
+			</b:jumbotron>
+		</b:container>
+	</ui:define>
+</ui:composition>
